@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+{% load static %}
+
+{% block title %} Posts {% endblock title %}
+
+{% block content %}
+<hr>
+{% if posts %}
+    {% for post in posts %}
+        <h5><a href="{% url 'post_detail' post.pk %}"> {{ post.head }}</a></h5>
+        <sup>By {{ post.user }}  {{ post.time_in | date:'M d Y'}}</sup>
+        <p>{{ post.text | truncatechars:400 }}
+            {{ post.content_upload | safe | truncatechars:400}}
+        {% if post.user == user is True or user == admin %}
+            <button><a href="{% url 'post_update' post.pk %}">Update</a> </button>
+            <button><a href="{% url 'post_delete' post.pk %}">Delete</a> </button>
+        {% endif %}
+    {% endfor %}
+
+
+{% else %}
+    No news posts yet
+{% endif %}
+<hr>
+<button><a href="{% url 'new_post'  %}">Make a post</a> </button>
+
+{% endblock content %}

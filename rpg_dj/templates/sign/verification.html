@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+{% block title %} Please, enter the verification code that has been sent to your email {% endblock title %}
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="code">
+
+    <input type="submit" value="Confirm">
+</form>
+{% endblock content %}

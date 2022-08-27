@@ -1,0 +1,20 @@
+{% extends 'default.html' %}
+{% load static %}
+{% block title %} Write a new comment {% endblock title %}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+{% block content %}
+    {% csrf_token %}
+
+    <form method="post" action="./">
+            {% csrf_token %}
+            {{ form.media }}
+            <ul style="display: flex">
+                {{ form.as_ul }}
+            </ul>
+            <p><input type="submit" value="Create post"/></p>
+        </form>
+
+
+{% endblock content %}

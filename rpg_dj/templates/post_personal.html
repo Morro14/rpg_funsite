@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+{% load static %}
+
+{% block title %} Replies to my posts {% endblock title %}
+
+{% block content %}
+
+<form method="POST" action="{% url 'post_personal' user %}">
+{% csrf_token %}
+{{ form }}
+    <input type="submit" value="Search">
+</form>
+<hr>
+{% if comments %}
+<table>
+    {% for comment in comments %}
+    <tr>
+        <td>
+        <h6>{{ comment.text }}</h6>
+        <sup>By {{ comment.user }}</sup>
+        </td>
+        {% if viewer == user %}
+            <td><button><a href="{% url 'comment_delete' comment.pk %}" >Delete Comment</a></button></td>
+            <td><button><a href="{% url 'comment_accept' user comment.pk %}" >Accept</a></button></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+    No news comments yet
+{% endif %}
+<hr>
+
+{% endblock content %}

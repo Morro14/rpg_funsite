@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+{% load static %}
+{% block title %} Post {% endblock title %}
+
+{% block content %}
+
+<h1>{{ news.head }}</h1>
+    <hr>
+    <br>
+    <td>{{ news.text }}</td>
+
+<hr>
+{% if comments %}
+Comments
+<hr>
+<table>
+    {% for comment in comments %}
+    <tr>
+        {{ comment.user }}
+    </tr>
+    <tr>
+        {{ comment.text }}
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% else %}
+    <h2>No comments</h2>
+{% endif %}
+
+{% endblock content %}

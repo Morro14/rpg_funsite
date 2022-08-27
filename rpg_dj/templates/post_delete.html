@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+
+{% block title %} Delete post {% endblock title %}
+{% block content %}
+
+
+<h3>Do you really want to delete this post?</h3>
+    {{ post.time_in | date:'M d Y' }}
+    {{ post.text }}
+    <sub>by {{ post.user }}</sub>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Confirm" >
+</form>
+{% endblock content %}

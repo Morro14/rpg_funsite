@@ -1,0 +1,20 @@
+{% extends 'default.html' %}
+{% load static %}
+{% block title %} Update post {% endblock title %}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+{% block content %}
+    {% csrf_token %}
+
+    <form method="post">
+            {% csrf_token %}
+            {{ form.media }}
+            <ul style="display: flex">
+                {{ form.as_ul }}
+            </ul>
+            <p><input type="submit" value="Update post"/></p>
+        </form>
+
+
+{% endblock content %}

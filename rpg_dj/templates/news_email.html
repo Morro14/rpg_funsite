@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+{% block title %} News for the last week {% endblock title %}
+{% block content %}
+
+<ol>
+    {% for n in news %}
+    <li><a href="'http://127.0.0.1:8000/board/' n.pk ">{{n.head}}</a> </li>
+    {% endfor %}
+</ol>
+{% endblock content %}

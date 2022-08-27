@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+
+{% block title %} Delete comment {% endblock title %}
+{% block content %}
+
+
+<h3>Do you really want to delete this comment?</h3>
+    {{ comment.time_in | date:'M d Y' }}
+    {{ comment.text }}
+    <sub>by {{ comment.user }}</sub>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Confirm" >
+</form>
+{% endblock content %}

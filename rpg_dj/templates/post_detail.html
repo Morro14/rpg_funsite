@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+{% load static %}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+{% block title %} Post {% endblock title %}
+
+{% block content %}
+
+<h1>{{ post.head }}</h1>
+<hr>
+<br>
+{{ post.text }}
+{{ post.content_upload | safe }}
+<hr>
+<form method="post" action="{% url 'comment_accept' post.pk %}">
+    {% csrf_token %}
+    {{ form.media }}
+    <ul style="display: flex">
+                {{ form.as_ul }}
+            </ul>
+    <p><input type="submit" value="Send comment"/></p>
+</form>
+<hr>
+{% if comments %}
+<h4>Comments:</h4>
+
+    {% for comment in comments %}
+    from {{ comment.user }}
+        {{ comment.text | safe }}
+    {% endfor %}
+
+
+
+{% else %}
+    <h2>No comments</h2>
+{% endif %}
+
+{% endblock content %}
+
