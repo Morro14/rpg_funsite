@@ -129,7 +129,6 @@ def post_view(request, user):
 
     if request.POST.get('time_period'):
         comments = dict[request.POST['time_period']]
-    print(comments)
     viewer = request.user
     variables = {'comments': comments, 'form': form, 'viewer': viewer}
     return render(request, 'post_personal.html', context=variables)
