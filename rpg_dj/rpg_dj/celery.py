@@ -21,11 +21,3 @@ app.conf.beat_schedule = {
     }
 }
 
-app.conf.beat_schedule = {
-    'task weekly': {
-        'task': 'weekly_mail_task',
-        'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
-#        'schedule': 10,
-        'args': (),
-    }
-}
